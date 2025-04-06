@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>  // Для isatty() на Unix/Linux
 #include "table.h"
 
 /**
@@ -33,6 +34,9 @@ int compare(char *s1, char *s2) {
 int main() {
     Table table;
     create(&table);
+    
+    // Проверка, является ли stdin терминалом или файлом
+    int is_interactive = isatty(fileno(stdin));
   
     printf("Available commands:\n");
     printf("add key value - add new element (max 6 chars)\n");
@@ -45,21 +49,37 @@ int main() {
     char value[256];
     
     while (1) {
-        printf("Enter command: ");
-        // Сброс буфера вывода для корректной работы при перенаправлении ввода
-        fflush(stdout);
+        // Выводить приглашение только в интерактивном режиме
+        if (is_interactive) {
+            printf("Enter command: ");
+            // // Принудительно очищаем буфер вывода, 
+            // // чтобы запрос команды 
+            // // появиялся до ввода пользователя
+            // fflush(stdout);
+        }
         
-        // Проверка на достижение конца файла
+        // Проверка, достигнут ли конец файла (EOF)
         if (scanf("%s", command) == EOF) {
             break;
         }
         
+        // Вывести команду, если не в интерактивном режиме
+        if (!is_interactive) {
+            printf("Command: %s", command);
+        }
+        
         if (compare(command, "add") == 0) {
             scanf("%6s %255s", key, value);
+            if (!is_interactive) {
+                printf(" %s %s\n", key, value);
+            }
             add(&table, key, value);
         } 
         else if (compare(command, "search") == 0) {
             scanf("%6s", key);
+            if (!is_interactive) {
+                printf(" %s\n", key);
+            }
             char *result = search(&table, key);
             if (result) {
                 printf("Found: %s\n", result);
@@ -68,12 +88,21 @@ int main() {
             }
         } 
         else if (compare(command, "print") == 0) {
+            if (!is_interactive) {
+                printf("\n");
+            }
             print(&table);
         }
         else if (compare(command, "exit") == 0) {
+            if (!is_interactive) {
+                printf("\n");
+            }
             break;
         }
         else {
+            if (!is_interactive) {
+                printf("\n");
+            }
             printf("Unknown command\n");
         }
     }

@@ -4,13 +4,20 @@ search key - find element
 print - show table
 exit - quit program
 
-Enter command: Enter command: Enter command: Enter command: Enter command: 1: one
+Command: add 1 one
+Command: add 8 eight
+Command: add 3 three
+Command: add 5 five
+Command: print
+1: one
 8: eight
 3: three
 5: five
-Enter command: Found: one
-Enter command: 1: one
+Command: search 1
+Found: one
+Command: print
+1: one
 3: three
 5: five
 8: eight
-Enter command: 
+Command: exit
