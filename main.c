@@ -15,7 +15,7 @@ int compare(char *s1, char *s2) {
 int main() {
     Table table;
     create(&table);
-    
+  
     printf("Available commands:\n");
     printf("add key value - add new element\n");
     printf("search key - find element\n");
@@ -25,6 +25,7 @@ int main() {
     char command[256];
     int key;
     char value[256];
+    
     while (1) {
         printf("Enter command: ");
         scanf("%s", command);
@@ -52,6 +53,7 @@ int main() {
             printf("Unknown command\n");
         }
     }
+    
     destroy(&table);
     return 0;
 }
