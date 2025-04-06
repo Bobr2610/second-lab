@@ -28,7 +28,13 @@ int main() {
     
     while (1) {
         printf("Enter command: ");
-        scanf("%s", command);
+        // Flush stdout to ensure prompt appears when redirecting input
+        fflush(stdout);
+        
+        // Check if we've reached EOF (end of file)
+        if (scanf("%s", command) == EOF) {
+            break;
+        }
         
         if (compare(command, "add") == 0) {
             scanf("%d %s", &key, value);

@@ -1,0 +1,8 @@
+add 1 one
+add 8 eight
+add 3 three
+add 5 five
+print
+search 1
+print
+exit

@@ -1,0 +1,16 @@
+Available commands:
+add key value - add new element
+search key - find element
+print - show table
+exit - quit program
+
+Enter command: Enter command: Enter command: Enter command: Enter command: 1: one
+8: eight
+3: three
+5: five
+Enter command: Found: one
+Enter command: 1: one
+3: three
+5: five
+8: eight
+Enter command: 
