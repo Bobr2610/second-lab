@@ -1,5 +1,5 @@
 Available commands:
-add key value - add new element
+add key value - add new element (max 6 chars)
 search key - find element
 print - show table
 exit - quit program
