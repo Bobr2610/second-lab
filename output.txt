@@ -1,23 +1,175 @@
 Available commands:
 add key value - add new element (max 6 chars)
+sort - sort table
 search key - find element
 print - show table
 exit - quit program
 
-Command: add 1 one
-Command: add 8 eight
-Command: add 3 three
-Command: add 5 five
+Command: add 23 twenty_three
+Command: add 7 seven
+Command: add 45 forty_five
+Command: add 12 twelve
+Command: add 31 thirty_one
+Command: add 59 fifty_nine
+Command: add 4 four
+Command: add 38 thirty_eight
+Command: add 15 fifteen
+Command: add 52 fifty_two
+Command: add 27 twenty_seven
+Command: add 61 sixty_one
+Command: add 9 nine
+Command: add 33 thirty_three
+Command: add 19 nineteen
+Command: add 41 forty_one
 Command: print
-1: one
-8: eight
-3: three
-5: five
-Command: search 1
-Found: one
+23: twenty_three
+7: seven
+45: forty_five
+12: twelve
+31: thirty_one
+59: fifty_nine
+4: four
+38: thirty_eight
+15: fifteen
+52: fifty_two
+27: twenty_seven
+61: sixty_one
+9: nine
+33: thirty_three
+19: nineteen
+41: forty_one
+Command: sort
+Before sorting:
+23: twenty_three
+7: seven
+45: forty_five
+12: twelve
+31: thirty_one
+59: fifty_nine
+4: four
+38: thirty_eight
+15: fifteen
+52: fifty_two
+27: twenty_seven
+61: sixty_one
+9: nine
+33: thirty_three
+19: nineteen
+41: forty_one
+Comparing keys: '23' and '7'
+Comparing keys: '45' and '12'
+Comparing keys: '7' and '12'
+Comparing keys: '23' and '12'
+Comparing keys: '23' and '45'
+Comparing keys: '31' and '59'
+Comparing keys: '4' and '38'
+Comparing keys: '31' and '4'
+Comparing keys: '31' and '38'
+Comparing keys: '59' and '38'
+Comparing keys: '7' and '4'
+Comparing keys: '7' and '31'
+Comparing keys: '12' and '31'
+Comparing keys: '23' and '31'
+Comparing keys: '45' and '31'
+Comparing keys: '45' and '38'
+Comparing keys: '45' and '59'
+Comparing keys: '15' and '52'
+Comparing keys: '27' and '61'
+Comparing keys: '15' and '27'
+Comparing keys: '52' and '27'
+Comparing keys: '52' and '61'
+Comparing keys: '9' and '33'
+Comparing keys: '19' and '41'
+Comparing keys: '9' and '19'
+Comparing keys: '33' and '19'
+Comparing keys: '33' and '41'
+Comparing keys: '15' and '9'
+Comparing keys: '15' and '19'
+Comparing keys: '27' and '19'
+Comparing keys: '27' and '33'
+Comparing keys: '52' and '33'
+Comparing keys: '52' and '41'
+Comparing keys: '4' and '9'
+Comparing keys: '7' and '9'
+Comparing keys: '12' and '9'
+Comparing keys: '12' and '15'
+Comparing keys: '23' and '15'
+Comparing keys: '23' and '19'
+Comparing keys: '23' and '27'
+Comparing keys: '31' and '27'
+Comparing keys: '31' and '33'
+Comparing keys: '38' and '33'
+Comparing keys: '38' and '41'
+Comparing keys: '45' and '41'
+Comparing keys: '45' and '52'
+Comparing keys: '59' and '52'
+Comparing keys: '59' and '61'
+After sorting:
+4: four
+7: seven
+9: nine
+12: twelve
+15: fifteen
+19: nineteen
+23: twenty_three
+27: twenty_seven
+31: thirty_one
+33: thirty_three
+38: thirty_eight
+41: forty_one
+45: forty_five
+52: fifty_two
+59: fifty_nine
+61: sixty_one
+Command: search 3
+Comparing keys: '4' and '7'
+Comparing keys: '9' and '12'
+Comparing keys: '4' and '9'
+Comparing keys: '7' and '9'
+Comparing keys: '15' and '19'
+Comparing keys: '23' and '27'
+Comparing keys: '15' and '23'
+Comparing keys: '19' and '23'
+Comparing keys: '4' and '15'
+Comparing keys: '7' and '15'
+Comparing keys: '9' and '15'
+Comparing keys: '12' and '15'
+Comparing keys: '31' and '33'
+Comparing keys: '38' and '41'
+Comparing keys: '31' and '38'
+Comparing keys: '33' and '38'
+Comparing keys: '45' and '52'
+Comparing keys: '59' and '61'
+Comparing keys: '45' and '59'
+Comparing keys: '52' and '59'
+Comparing keys: '31' and '45'
+Comparing keys: '33' and '45'
+Comparing keys: '38' and '45'
+Comparing keys: '41' and '45'
+Comparing keys: '4' and '31'
+Comparing keys: '7' and '31'
+Comparing keys: '9' and '31'
+Comparing keys: '12' and '31'
+Comparing keys: '15' and '31'
+Comparing keys: '19' and '31'
+Comparing keys: '23' and '31'
+Comparing keys: '27' and '31'
+Not found
 Command: print
-1: one
-3: three
-5: five
-8: eight
+4: four
+7: seven
+9: nine
+12: twelve
+15: fifteen
+19: nineteen
+23: twenty_three
+27: twenty_seven
+31: thirty_one
+33: thirty_three
+38: thirty_eight
+41: forty_one
+45: forty_five
+52: fifty_two
+59: fifty_nine
+61: sixty_one
 Command: exit

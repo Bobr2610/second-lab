@@ -40,6 +40,7 @@ int main() {
   
     printf("Available commands:\n");
     printf("add key value - add new element (max 6 chars)\n");
+    printf("sort - sort table\n");
     printf("search key - find element\n");
     printf("print - show table\n");
     printf("exit - quit program\n\n");
@@ -52,10 +53,6 @@ int main() {
         // Выводить приглашение только в интерактивном режиме
         if (is_interactive) {
             printf("Enter command: ");
-            // // Принудительно очищаем буфер вывода, 
-            // // чтобы запрос команды 
-            // // появиялся до ввода пользователя
-            // fflush(stdout);
         }
         
         // Проверка, достигнут ли конец файла (EOF)
@@ -98,6 +95,12 @@ int main() {
                 printf("\n");
             }
             break;
+        }
+        else if (compare(command, "sort") == 0) {
+            if (!is_interactive) {
+                printf("\n");
+            }
+            sort(&table);
         }
         else {
             if (!is_interactive) {

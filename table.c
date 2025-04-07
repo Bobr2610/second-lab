@@ -51,7 +51,7 @@ void add(Table *t, const char *key, const char *value) {
         strncpy(t->data[t->size].key, key, KEY_SIZE-1);
         t->data[t->size].key[KEY_SIZE-1] = '\0';
         
-        // Копирование значения
+        // Копирование значения и добавление терминатора
         strncpy(t->data[t->size].value, value, 255);
         t->data[t->size].value[255] = '\0';
         
@@ -62,9 +62,9 @@ void add(Table *t, const char *key, const char *value) {
 }
 
 /**
- * @brief Вспомогательная функция для слияния двух отсортированных подмассивов
+ * @brief Функция для сортировки и слияния двух отсортированных подмассивов
  * 
- * Функция объединяет два отсортированных подмассива в один отсортированный массив.
+ * Функция сортирует и объединяет два подмассива в один отсортированный массив.
  * Это ключевая часть алгоритма "Простое двухпоточное слияние".
  * 
  * @param t Указатель на таблицу
@@ -73,6 +73,49 @@ void add(Table *t, const char *key, const char *value) {
  * @param mid Индекс конца первого подмассива
  * @param right Индекс конца второго подмассива
  */
+/**
+ * @brief Проверяет, является ли строка числом
+ * 
+ * @param str Строка для проверки
+ * @return 1 если строка - число, 0 в противном случае
+ */
+int is_numeric(const char *str) {
+    // Пустая строка не является числом
+    if (*str == '\0')
+        return 0;
+    
+    // Проверяем каждый символ
+    while (*str) {
+        if (*str < '0' || *str > '9')
+            return 0;
+        str++;
+    }
+    return 1;
+}
+
+/**
+ * @brief Сравнивает два ключа с учетом их типа (числовой или строковый)
+ * 
+ * @param key1 Первый ключ
+ * @param key2 Второй ключ
+ * @return Отрицательное число если key1 < key2, 0 если равны, положительное если key1 > key2
+ */
+int compare_keys(const char *key1, const char *key2) {
+    // Проверяем, являются ли оба ключа числами
+    int is_num1 = is_numeric(key1);
+    int is_num2 = is_numeric(key2);
+    
+    // Если оба ключа - числа, сравниваем их как числа
+    if (is_num1 && is_num2) {
+        int num1 = atoi(key1);
+        int num2 = atoi(key2);
+        return num1 - num2;
+    }
+    
+    // В противном случае используем лексикографическое сравнение
+    return strcmp(key1, key2);
+}
+
 void merge(Table *t, Entry *temp, int left, int mid, int right) {
     int i = left;    // Индекс для левого подмассива
     int j = mid + 1; // Индекс для правого подмассива
@@ -80,7 +123,9 @@ void merge(Table *t, Entry *temp, int left, int mid, int right) {
     
     // Слияние двух подмассивов
     while (i <= mid && j <= right) {
-        if (strcmp(t->data[i].key, t->data[j].key) <= 0) {
+        // Сравниваем ключи с учетом их типа (числовой или строковый)
+        printf("Comparing keys: '%s' and '%s'\n", t->data[i].key, t->data[j].key);
+        if (compare_keys(t->data[i].key, t->data[j].key) <= 0) {
             temp[k] = t->data[i];
             i++;
         } else {
@@ -136,7 +181,7 @@ void merge_sort_recursive(Table *t, Entry *temp, int left, int right) {
 }
 
 /**
- * @brief Основная функция сортировки методом "Простое двухпоточное слияние"
+ * @brief Сортирует таблицу методом "Простое двухпоточное слияние"
  * 
  * Эта функция инициализирует временный массив и запускает рекурсивный
  * алгоритм сортировки слиянием. Алгоритм имеет сложность O(n log n)
@@ -145,15 +190,36 @@ void merge_sort_recursive(Table *t, Entry *temp, int left, int right) {
  * @param t Указатель на таблицу для сортировки
  */
 void merge_sort(Table *t) {
-    Entry *temp = (Entry *)malloc(t->size * sizeof(Entry));
+    // Создаем временную таблицу для хранения только непустых элементов
+    Table temp_table;
+    create(&temp_table);
+    temp_table.size = 0;
+    
+    // Копируем только непустые элементы в временную таблицу
+    for (int i = 0; i < t->size; i++) {
+        if (t->data[i].key[0] != '\0') {
+            add(&temp_table, t->data[i].key, t->data[i].value);
+        }
+    }
+    
+    // Выделяем память для временного массива для сортировки
+    Entry *temp = (Entry *)malloc(temp_table.size * sizeof(Entry));
     if (temp == NULL) {
         printf("Memory allocation error\n");
         return;
     }
     
-    merge_sort_recursive(t, temp, 0, t->size - 1);
+    // Сортируем только непустые элементы
+    merge_sort_recursive(&temp_table, temp, 0, temp_table.size - 1);
+    
+    // Копируем отсортированные элементы обратно в исходную таблицу
+    t->size = 0;
+    for (int i = 0; i < temp_table.size; i++) {
+        add(t, temp_table.data[i].key, temp_table.data[i].value);
+    }
     
     free(temp);
+    destroy(&temp_table);
 }
 
 /**
@@ -174,7 +240,7 @@ char* search(Table *t, const char *key) {
     int left = 0, right = t->size - 1;
     while (left <= right) {
         int mid = (left + right) / 2;
-        int cmp = strcmp(t->data[mid].key, key);
+        int cmp = compare_keys(t->data[mid].key, key);
         
         if (cmp == 0) {
             return t->data[mid].value;
@@ -189,16 +255,35 @@ char* search(Table *t, const char *key) {
 }
 
 /**
- * @brief Выводит содержимое таблицы
+ * @brief Выводит содержимое отсортировнной таблицы
  * 
  * Печатает все непустые элементы таблицы в формате "ключ: значение".
  * 
  * @param t Указатель на таблицу для вывода
  */
 void print(Table *t) {
+
     for (int i = 0; i < t->size; i++) {
         if (t->data[i].key[0] != '\0') {  // Вывод только непустых элементов
             printf("%s: %s\n", t->data[i].key, t->data[i].value);
         }
     }
+}
+
+
+/**
+ * @brief Сортирует и выводит содержимое несортированной и отсортировнной таблицы
+ * 
+ * Печатает все непустые элементы таблицы в формате "ключ: значение".
+ * 
+ * @param t Указатель на таблицу для вывода
+ */
+void sort(Table *t) {
+    
+    printf("Before sorting:\n");
+    print(t);  // Вывод неотсортированной таблицы
+    // Сортировка таблицы
+    merge_sort(t);
+    printf("After sorting:\n");
+    print(t);  // Вывод отсортированной таблицы
 }
