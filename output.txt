@@ -5,14 +5,14 @@ search key - find element
 print - show table
 exit - quit program
 
-Command: add 23 twenty_three
-Command: add 7 seven
-Command: add 45 forty_five
+Command: add 23 twenty three
+Command: add пят ь пятьдеят пять
+Command: add 45 forty five
 Command: add 12 twelve
 Command: add 31 thirty_one
 Command: add 59 fifty_nine
-Command: add 4 four
-Command: add 38 thirty_eight
+Command: add fourte en четырнадцать
+Command: add 38 thirty eight
 Command: add 15 fifteen
 Command: add 52 fifty_two
 Command: add 27 twenty_seven
@@ -20,16 +20,16 @@ Command: add 61 sixty_one
 Command: add 9 nine
 Command: add 33 thirty_three
 Command: add 19 nineteen
-Command: add 41 forty_one
+Command: add 41 сорок один
 Command: print
-23: twenty_three
-7: seven
-45: forty_five
+23: twenty three
+пят: ь пятьдеят пять
+45: forty five
 12: twelve
 31: thirty_one
 59: fifty_nine
-4: four
-38: thirty_eight
+fourte: en четырнадцать
+38: thirty eight
 15: fifteen
 52: fifty_two
 27: twenty_seven
@@ -37,17 +37,17 @@ Command: print
 9: nine
 33: thirty_three
 19: nineteen
-41: forty_one
+41: сорок один
 Command: sort
 Before sorting:
-23: twenty_three
-7: seven
-45: forty_five
+23: twenty three
+пят: ь пятьдеят пять
+45: forty five
 12: twelve
 31: thirty_one
 59: fifty_nine
-4: four
-38: thirty_eight
+fourte: en четырнадцать
+38: thirty eight
 15: fifteen
 52: fifty_two
 27: twenty_seven
@@ -55,24 +55,24 @@ Before sorting:
 9: nine
 33: thirty_three
 19: nineteen
-41: forty_one
-Comparing keys: '23' and '7'
+41: сорок один
+Comparing keys: '23' and 'пят'
 Comparing keys: '45' and '12'
-Comparing keys: '7' and '12'
 Comparing keys: '23' and '12'
 Comparing keys: '23' and '45'
+Comparing keys: 'пят' and '45'
 Comparing keys: '31' and '59'
-Comparing keys: '4' and '38'
-Comparing keys: '31' and '4'
+Comparing keys: 'fourte' and '38'
 Comparing keys: '31' and '38'
 Comparing keys: '59' and '38'
-Comparing keys: '7' and '4'
-Comparing keys: '7' and '31'
+Comparing keys: '59' and 'fourte'
 Comparing keys: '12' and '31'
 Comparing keys: '23' and '31'
 Comparing keys: '45' and '31'
 Comparing keys: '45' and '38'
 Comparing keys: '45' and '59'
+Comparing keys: 'пят' and '59'
+Comparing keys: 'пят' and 'fourte'
 Comparing keys: '15' and '52'
 Comparing keys: '27' and '61'
 Comparing keys: '15' and '27'
@@ -89,8 +89,6 @@ Comparing keys: '27' and '19'
 Comparing keys: '27' and '33'
 Comparing keys: '52' and '33'
 Comparing keys: '52' and '41'
-Comparing keys: '4' and '9'
-Comparing keys: '7' and '9'
 Comparing keys: '12' and '9'
 Comparing keys: '12' and '15'
 Comparing keys: '23' and '15'
@@ -104,72 +102,47 @@ Comparing keys: '45' and '41'
 Comparing keys: '45' and '52'
 Comparing keys: '59' and '52'
 Comparing keys: '59' and '61'
+Comparing keys: 'fourte' and '61'
 After sorting:
-4: four
-7: seven
 9: nine
 12: twelve
 15: fifteen
 19: nineteen
-23: twenty_three
+23: twenty three
 27: twenty_seven
 31: thirty_one
 33: thirty_three
-38: thirty_eight
-41: forty_one
-45: forty_five
+38: thirty eight
+41: сорок один
+45: forty five
 52: fifty_two
 59: fifty_nine
 61: sixty_one
-Command: search 3
-Comparing keys: '4' and '7'
-Comparing keys: '9' and '12'
-Comparing keys: '4' and '9'
-Comparing keys: '7' and '9'
-Comparing keys: '15' and '19'
-Comparing keys: '23' and '27'
-Comparing keys: '15' and '23'
-Comparing keys: '19' and '23'
-Comparing keys: '4' and '15'
-Comparing keys: '7' and '15'
-Comparing keys: '9' and '15'
-Comparing keys: '12' and '15'
-Comparing keys: '31' and '33'
-Comparing keys: '38' and '41'
-Comparing keys: '31' and '38'
-Comparing keys: '33' and '38'
-Comparing keys: '45' and '52'
-Comparing keys: '59' and '61'
-Comparing keys: '45' and '59'
-Comparing keys: '52' and '59'
-Comparing keys: '31' and '45'
-Comparing keys: '33' and '45'
-Comparing keys: '38' and '45'
-Comparing keys: '41' and '45'
-Comparing keys: '4' and '31'
-Comparing keys: '7' and '31'
-Comparing keys: '9' and '31'
-Comparing keys: '12' and '31'
-Comparing keys: '15' and '31'
-Comparing keys: '19' and '31'
-Comparing keys: '23' and '31'
-Comparing keys: '27' and '31'
-Not found
+fourte: en четырнадцать
+пят: ь пятьдеят пять
+Command: search fourte
+Found: en четырнадцать
+Command: search 41
+Found: сорок один
+Command: search пят
+Found: ь пятьдеят пять
+Command: ь
+Unknown command
 Command: print
-4: four
-7: seven
 9: nine
 12: twelve
 15: fifteen
 19: nineteen
-23: twenty_three
+23: twenty three
 27: twenty_seven
 31: thirty_one
 33: thirty_three
-38: thirty_eight
-41: forty_one
-45: forty_five
+38: thirty eight
+41: сорок один
+45: forty five
 52: fifty_two
 59: fifty_nine
 61: sixty_one
+fourte: en четырнадцать
+пят: ь пятьдеят пять
 Command: exit

@@ -233,8 +233,6 @@ void merge_sort(Table *t) {
  * @return Указатель на найденное значение или NULL, если элемент не найден
  */
 char* search(Table *t, const char *key) {
-    // Сортировка таблицы
-    merge_sort(t);
     
     // Бинарный поиск
     int left = 0, right = t->size - 1;

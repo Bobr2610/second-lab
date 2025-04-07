@@ -66,11 +66,16 @@ int main() {
         }
         
         if (compare(command, "add") == 0) {
-            scanf("%6s %255s", key, value);
+            scanf("%6s", key);
+            
+            // Read the rest of the line for value (including spaces)
+            char buffer[256];
+            scanf(" %[^\n]", buffer);
+            
             if (!is_interactive) {
-                printf(" %s %s\n", key, value);
+                printf(" %s %s\n", key, buffer);
             }
-            add(&table, key, value);
+            add(&table, key, buffer);
         } 
         else if (compare(command, "search") == 0) {
             scanf("%6s", key);

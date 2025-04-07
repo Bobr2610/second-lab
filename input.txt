@@ -1,11 +1,11 @@
-add 23 twenty_three
-add 7 seven
-add 45 forty_five
+add 23 twenty three
+add пять пятьдеят пять
+add 45 forty five
 add 12 twelve
 add 31 thirty_one
 add 59 fifty_nine
-add 4 four
-add 38 thirty_eight
+add fourteen четырнадцать
+add 38 thirty eight
 add 15 fifteen
 add 52 fifty_two
 add 27 twenty_seven
@@ -13,9 +13,11 @@ add 61 sixty_one
 add 9 nine
 add 33 thirty_three
 add 19 nineteen
-add 41 forty_one
+add 41 сорок один
 print
 sort
-search 3
+search fourte
+search 41
+search пять
 print
 exit
